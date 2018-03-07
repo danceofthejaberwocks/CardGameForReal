@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CardGame
+{
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+            Deck myDeck = new Deck();
+            Card card = new Card();
+            card.cardChoice(); 
+        }
+
+        
+        }
+        class Card
+        {
+            public string suite { get; set; }
+            public int cardValue { get; set; }
+            public string cardColor { get; set; }
+            
+        public int cardChoice()         {
+            Card cards = new Card();
+            Random suiteNumber = new Random();
+            int suiteChoice = suiteNumber.Next(1, 4);
+            if (suiteChoice == 1) { cards.suite = "Hearts"; }
+            else if (suiteChoice == 2) { cards.suite = "Diamonds"; }
+            else if (suiteChoice == 3) { cards.suite = "Spades"; }
+            else { cards.suite = "Clubs"; }
+
+
+            Deck deck = new Deck();
+            deck.cardNumber();
+            if (deck.cardNumber() == 10)
+            { Console.WriteLine($"Your card is the Jack of {cards.suite}"); }
+            else if (deck.cardNumber() == 11)
+                Console.WriteLine($"Your card is the Queen of {cards.suite}");
+            else if (deck.cardNumber() == 12)
+                Console.WriteLine($"Your card is the King of {cards.suite}");
+            else if (deck.cardNumber() == 13)
+                Console.WriteLine($"Your card is the Ace of {cards.suite}");
+            else
+                Console.WriteLine($"Your card is the {deck.cardNumber()} of {cards.suite} ");
+            Console.ReadLine();
+            return deck.cardNumber();
+        }
+
+
+      
+          
+
+        }
+    class Deck
+    {
+       public int cardNumber()
+        {
+            Random rand = new Random();
+            int newCard = rand.Next(1, 13);
+            return newCard;
+        }
+        void cardList() {
+            List<int> deck = new List<int>();
+            deck.Add(1);
+            deck.Add(2);
+            deck.Add(3);
+            deck.Add(4);
+            deck.Add(5);
+            deck.Add(6);
+            deck.Add(7);
+            deck.Add(8);
+            deck.Add(9);
+            deck.Add(10);
+            deck.Add(11);
+            deck.Add(12);
+            deck.Add(13);
+            }
+
+                
+            
+        }
+      
+    }
+
