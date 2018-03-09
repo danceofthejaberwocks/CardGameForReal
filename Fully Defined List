@@ -20,7 +20,8 @@ namespace CardGame
                 Random rand = new Random();
                 int cardChoice = rand.Next(1, 52);
                 int score = deck.DeckContains()[cardChoice].cardValue;
-                Console.WriteLine($"You picked {deck.DeckContains()[cardChoice].cardName} of {deck.DeckContains()[cardChoice].suit} and it is worth {deck.DeckContains()[cardChoice].cardValue}");
+                Console.WriteLine($"You picked {deck.DeckContains()[cardChoice].cardName} of {deck.DeckContains()[cardChoice].suit}" 
+                + "and it is worth {deck.DeckContains()[cardChoice].cardValue}");
                 Console.WriteLine("Do you want to draw again? Y or N");
                 string input = Console.ReadLine().ToUpper();
                 if (input == "Y") { menu = true; }
