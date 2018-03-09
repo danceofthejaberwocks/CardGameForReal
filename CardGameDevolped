@@ -11,10 +11,16 @@ namespace CardGame
 
         static void Main(string[] args)
         {
-            Deck deck = new Deck();
-            Console.WriteLine(deck.CardChoice());
-            
-            Console.ReadLine();
+            bool menu = true;
+            while (menu == true)
+            {
+                Deck deck = new Deck();
+                Console.WriteLine(deck.CardChoice());
+                Console.WriteLine("Do you want to draw again? Y or N");
+                string input = Console.ReadLine().ToUpper();
+                if (input == "Y") { menu = true; }
+                else { menu = false; }
+            }
         }
     }
     class Card
