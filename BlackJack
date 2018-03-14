@@ -1,0 +1,159 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CardGame
+{
+    class Program
+    {
+        public static Random rand = new Random();
+        static void Main(string[] args)
+        {
+            Deck deck = new Deck();
+            Card card = new Card();
+        
+            int score = 0;
+            int compScore = 0;
+
+            bool menu = true;
+            while (menu == true)
+            {
+                int cardChoice = CardChoice();
+                int computerChoice = CardChoice();
+                score = score + deck.DeckContains()[cardChoice].cardValue;
+                compScore = compScore + deck.DeckContains()[computerChoice].cardValue;
+                Console.WriteLine($"You picked {deck.DeckContains()[cardChoice].cardName} of {deck.DeckContains()[cardChoice].suit} and it is worth {deck.DeckContains()[cardChoice].cardValue}\r\n" +
+                    $"Your score is {score}\r\n" +
+
+                    $"The computer picked {deck.DeckContains()[computerChoice].cardName} of {deck.DeckContains()[computerChoice].suit} and it is worth {deck.DeckContains()[computerChoice].cardValue}\r\n" +
+                    $"Computer score is: {compScore}");
+                Console.WriteLine("Hit me? Y or N");
+                string input = Console.ReadLine().ToUpper();
+                if (input == "Y") { menu = true; }
+                else if (score==21) {
+                    Console.WriteLine("You got blackjack!");
+                    Console.ReadLine();
+                    break;
+                }
+                else if (compScore==21)
+                {
+                    Console.WriteLine("The computer got blackjack!");
+                    Console.ReadLine();
+                    break;
+                } 
+                else if (score>21)
+                {
+                    Console.WriteLine("You lose");
+                    Console.ReadLine();
+                    break;
+                }
+                else if (compScore>21)
+                {
+                    Console.WriteLine("You win!");
+                    Console.ReadLine();
+                    break;
+                }
+                else
+                {
+                    if (compScore>score)
+                    {
+                        Console.WriteLine("The Computer wins!");
+                        
+                    }
+                    else { Console.WriteLine("You win!"); }
+                    Console.ReadLine();
+                    menu = false;
+                }
+
+
+                  
+
+            }
+        }
+       
+        public static int CardChoice() {
+         int cardChoice = rand.Next(1, 52);
+        return cardChoice;
+    }
+    }
+
+    class Card
+    {
+        public string suit { get; set; }
+        public int cardValue { get; set; }
+        public string cardColor { get; set; }
+        public string cardName { get; set; }
+        public int cardID { get; set; }
+
+    }
+    class Deck
+    {
+        public List<Card> DeckContains()
+        {
+            Card card = new Card();
+            List<Card> deck = new List<Card>();
+            //the lines below add cards and define their ID, suit, name and value. This is my whole deck 
+            //in one alebit verbose list. Hardcoding isn't ideal I know, but it is a deck so it is limited, not like a db
+            deck.Add(new Card() { cardID = 1, cardValue = 1, suit = "Diamonds", cardName = "Ace" });
+            deck.Add(new Card() { cardID = 2, cardValue = 2, suit = "Diamonds", cardName = "2" });
+            deck.Add(new Card() { cardID = 3, cardValue = 3, suit = "Diamonds", cardName = "3" });
+            deck.Add(new Card() { cardID = 4, cardValue = 4, suit = "Diamonds", cardName = "4" });
+            deck.Add(new Card() { cardID = 5, cardValue = 5, suit = "Diamonds", cardName = "5" });
+            deck.Add(new Card() { cardID = 6, cardValue = 6, suit = "Diamonds", cardName = "6" });
+            deck.Add(new Card() { cardID = 7, cardValue = 7, suit = "Diamonds", cardName = "7" });
+            deck.Add(new Card() { cardID = 8, cardValue = 8, suit = "Diamonds", cardName = "8" });
+            deck.Add(new Card() { cardID = 9, cardValue = 9, suit = "Diamonds", cardName = "9" });
+            deck.Add(new Card() { cardID = 10, cardValue = 10, suit = "Diamonds", cardName = "10" });
+            deck.Add(new Card() { cardID = 11, cardValue = 11, suit = "Diamonds", cardName = "Jack" });
+            deck.Add(new Card() { cardID = 12, cardValue = 12, suit = "Diamonds", cardName = "Queen" });
+            deck.Add(new Card() { cardID = 13, cardValue = 13, suit = "Diamonds", cardName = "King" });
+            deck.Add(new Card() { cardID = 14, cardValue = 1, suit = "Hearts", cardName = "Ace" });
+            deck.Add(new Card() { cardID = 15, cardValue = 2, suit = "Hearts", cardName = "2" });
+            deck.Add(new Card() { cardID = 16, cardValue = 3, suit = "Hearts", cardName = "3" });
+            deck.Add(new Card() { cardID = 17, cardValue = 4, suit = "Hearts", cardName = "4" });
+            deck.Add(new Card() { cardID = 18, cardValue = 5, suit = "Hears", cardName = "5" });
+            deck.Add(new Card() { cardID = 19, cardValue = 6, suit = "Hearts", cardName = "6" });
+            deck.Add(new Card() { cardID = 20, cardValue = 7, suit = "Hearts", cardName = "7" });
+            deck.Add(new Card() { cardID = 21, cardValue = 8, suit = "Hearts", cardName = "8" });
+            deck.Add(new Card() { cardID = 22, cardValue = 9, suit = "Hearts", cardName = "9" });
+            deck.Add(new Card() { cardID = 23, cardValue = 10, suit = "Hearts", cardName = "10" });
+            deck.Add(new Card() { cardID = 24, cardValue = 11, suit = "Hearts", cardName = "Jack" });
+            deck.Add(new Card() { cardID = 25, cardValue = 12, suit = "Hearts", cardName = "Queen" });
+            deck.Add(new Card() { cardID = 26, cardValue = 13, suit = "Hearts", cardName = "King" });
+            deck.Add(new Card() { cardID = 27, cardValue = 1, suit = "Clubs", cardName = "Ace" });
+            deck.Add(new Card() { cardID = 28, cardValue = 2, suit = "Clubs", cardName = "2" });
+            deck.Add(new Card() { cardID = 29, cardValue = 3, suit = "Clubs", cardName = "3" });
+            deck.Add(new Card() { cardID = 30, cardValue = 4, suit = "Clubs", cardName = "4" });
+            deck.Add(new Card() { cardID = 31, cardValue = 5, suit = "Clubs", cardName = "5" });
+            deck.Add(new Card() { cardID = 32, cardValue = 6, suit = "Clubs", cardName = "6" });
+            deck.Add(new Card() { cardID = 33, cardValue = 7, suit = "Clubs", cardName = "7" });
+            deck.Add(new Card() { cardID = 34, cardValue = 8, suit = "Clubs", cardName = "8" });
+            deck.Add(new Card() { cardID = 35, cardValue = 9, suit = "Clubs", cardName = "9" });
+            deck.Add(new Card() { cardID = 36, cardValue = 10, suit = "Clubs", cardName = "10" });
+            deck.Add(new Card() { cardID = 37, cardValue = 11, suit = "Clubs", cardName = "Jack" });
+            deck.Add(new Card() { cardID = 38, cardValue = 12, suit = "Clubs", cardName = "Queen" });
+            deck.Add(new Card() { cardID = 39, cardValue = 13, suit = "Clubs", cardName = "King" });
+            deck.Add(new Card() { cardID = 40, cardValue = 1, suit = "Spades", cardName = "Ace" });
+            deck.Add(new Card() { cardID = 41, cardValue = 2, suit = "Spades", cardName = "2" });
+            deck.Add(new Card() { cardID = 42, cardValue = 3, suit = "Spades", cardName = "3" });
+            deck.Add(new Card() { cardID = 43, cardValue = 4, suit = "Spades", cardName = "4" });
+            deck.Add(new Card() { cardID = 44, cardValue = 5, suit = "Spades", cardName = "5" });
+            deck.Add(new Card() { cardID = 45, cardValue = 6, suit = "Spades", cardName = "6" });
+            deck.Add(new Card() { cardID = 46, cardValue = 7, suit = "Spades", cardName = "7" });
+            deck.Add(new Card() { cardID = 47, cardValue = 8, suit = "Spades", cardName = "8" });
+            deck.Add(new Card() { cardID = 48, cardValue = 9, suit = "Spades", cardName = "9" });
+            deck.Add(new Card() { cardID = 49, cardValue = 10, suit = "Spades", cardName = "10" });
+            deck.Add(new Card() { cardID = 50, cardValue = 11, suit = "Spades", cardName = "Jack" });
+            deck.Add(new Card() { cardID = 51, cardValue = 12, suit = "Spades", cardName = "Queen" });
+            deck.Add(new Card() { cardID = 52, cardValue = 13, suit = "Spades", cardName = "King" });
+            return deck;
+        }
+
+
+
+    }
+}
+
+
